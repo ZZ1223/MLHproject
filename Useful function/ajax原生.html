@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+	
+	function getAjax(url,data,fn){
+		var param = data ? '?'+data : data;
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				fn(xhr.responseText);
+			}
+		};
+		xhr.open('GET',url + param,true);
+		xhr.send(null);
+	}
+
+	getAjax('data.php','username=hello',function(data){
+		
+		
+		
+	});
+
+
+	function postAjax(url,data,fn){
+		var param = data ? data : null;
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState==4 && xhr.status==200){
+				fn(xhr.responseText);
+			}
+		};
+		xhr.open('POST',url,true);
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.send(param);
+	}
+
+	postAjax('data.php','username=hello',function(data){
+		
+		
+		
+	});
+
+
+
+	// 当初老杜封装的ajax  get和post的版本 如果后期需要可以直接拿来使用 没有BUG
+</script>
+</body>
+</html>

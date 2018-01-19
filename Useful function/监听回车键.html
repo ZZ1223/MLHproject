@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<input type="text" />
+	<script>
+		listenSearch()
+function listenSearch(){
+		    document.querySelector('input').onkeydown=(event)=>{
+		    if (event.keyCode == 13){
+					console.log("输入了回车键") 
+					   // 魅力惠项目的 search页面和 list页面 都用到了这个功能
+					   // 在search页面  这个功能配合了 LocalStorage来使用的  用来搜索之后  把数据添加到LocalStorage后台
+					    //localstorage.setItem("key","value")设置添加
+					     //localstorage.getItem("key")获取 
+		      }
+		  } 
+		}
+	</script>
+</body>
+</html>

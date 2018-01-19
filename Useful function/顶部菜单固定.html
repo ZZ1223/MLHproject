@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ height:3000px;}
+#div1{ width:400px; height:100px; background:red; margin:300px auto;}
+</style>
+<script src="jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<div id="div1"></div>
+<script>
+// 这个是jq版本   可以转换成原生版本   在魅力惠 在Nav页面中 使用了这个固定导航的功能，在魅力惠项目中 写法是原生写法 可以参考下
+var iTop = $('#div1').offset().top;
+
+$(window).on('scroll',function(){
+
+	if( iTop <= $(document).scrollTop()  ){
+		
+		$('#div1').css({
+			position : 'fixed',
+			top : 0,
+			margin : 0,
+			left : $('#div1').offset().left
+		});
+		
+	}
+	else{
+		
+		$('#div1').css({
+			position : 'static',
+			margin : '300px auto'
+		});
+		
+	}
+
+});
+
+
+</script>
+</body>
+</html>

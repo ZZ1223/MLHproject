@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css" media="screen">
+		#fanhui{
+			width:80px;
+			height:80px;
+			background: #f60;
+			border-radius: 50%;
+			position: fixed;
+			right: 30px;
+			bottom: 30px;
+			display: none;
+			cursor: pointer;
+			line-height: 80px;
+			text-align:center;
+		}
+
+
+		body,html{
+            height:5000px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="fanhui" >回到顶部</div>
+	<script>
+		// 魅力惠项目中 在list列表页 还有 product页面 都有使用这个功能
+		window.onscroll = function() {
+			var scrollTop = document.documentElement.scrollTop ? 
+							document.documentElement.scrollTop :
+							document.body.scrollTop;
+			var red = document.getElementById('fanhui');
+			if(scrollTop >=1000) {
+				red.style.display = 'block';
+			} else {
+				red.style.display = 'none';
+			}
+		}
+		document.getElementById('fanhui').onclick=function(){
+			go2Top()
+		}
+		function go2Top () {
+					var id = setInterval(function () {
+						document.documentElement.scrollTop -= 200;
+						document.body.scrollTop -= 200;
+						var scrollTop = document.documentElement.scrollTop ? 
+									document.documentElement.scrollTop :
+									document.body.scrollTop;
+						if (scrollTop === 0) {
+							clearInterval(id)
+						}
+					}, 20)
+					
+				}
+	</script>
+</body>
+</html>

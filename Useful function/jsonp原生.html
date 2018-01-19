@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script>
+	
+	function getJSONP(url,fn){
+		var script = document.createElement('script');
+		var re = /cb=([^&]+)/;
+		var fnName = url.match(re)[1];
+		window[fnName] = fn;
+		script.src = url;
+		document.body.appendChild(script);
+		script.onload = function(){
+			document.body.removeChild(script);
+			delete window[fnName];
+		};
+	}
+
+	getJSONP('http://www.b.com/20171115ajax/jsonp.php?cb=foo&name=hello&age=20',function(data){
+		console.log(data.name);
+	});
+
+	// 老杜当初封装的JSONP原生写法，忘记有没有BUG了，react使用JSONP都得自己封装到时候可以拿来使用
+</script>
+</body>
+</html>

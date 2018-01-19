@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	*{
+		margin:0;
+		padding:0;
+	}
+		ul{
+			position: absolute;
+		}
+
+		.box{
+			width:200px;
+			height:600px;
+			background: #f60;
+			position: relative;
+			border: 1px solid #ccc;
+			overflow: hidden;
+		}
+		.gundong{
+			width:10px;
+			opacity: 0.5;
+			background: #000;
+			position: absolute;
+			right:0;
+			top:0;
+		}
+		li{
+			height:100px;
+			width:200px;
+			border:1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+			<li>11</li>
+			<li>12</li>
+
+		</ul>
+		<div class="gundong"></div>
+	</div>
+	<script type="text/javascript">
+		var box = document.querySelector('.box');
+		var gundong = document.querySelector('.gundong');
+		var ul = document.querySelector('ul');
+		var ss = ul.offsetHeight/box.offsetHeight;
+		if(ss<0){
+			ss=1;		
+		}
+		gundong.style.height=box.offsetHeight/ss+'px';	
+		gundong.onmousedown = function(evt){
+			var e = evt || window.event;
+			e.stopPropagation()
+			var top = gundong.offsetTop;
+			var y = e.clientY;
+			window.onmousemove = function(evt){
+				var e = evt || window.event;
+				var diffY = e.clientY-y;
+				var change=diffY+top;
+				if(change<0){
+					change=0;
+				}else if(change>box.offsetHeight-gundong.offsetHeight){
+					change=box.offsetHeight-gundong.offsetHeight;
+				}		
+				var scaleY = change / (box.offsetHeight-gundong.offsetHeight);
+				var bigDisTop = scaleY * (ul.offsetHeight - box.offsetHeight);
+				ul.style.top = - bigDisTop + 'px';
+				gundong.style.top = change+'px';		
+				return false;
+			}
+			window.onmouseup = function(){
+				window.onmousemove=null;
+				window.onmouseup=null;
+				return false;
+			}
+			return false;
+		}
+	</script>
+</body>
+</html>
